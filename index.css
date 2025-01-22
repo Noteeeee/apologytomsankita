@@ -1,6 +1,5 @@
 body {
   margin: 0;
-  font-family: "Poppins", sans-serif;
   background: linear-gradient(135deg, #ffc1cc, #ff9a9e);
   color: #fff;
   height: 100vh;
@@ -9,6 +8,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center; /* Ensures alignment on smaller screens */
 }
 
 #preloader {
@@ -23,6 +23,7 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  overflow: hidden; /* Prevent internal scrolling */
 }
 
 .heart-loader {
@@ -33,6 +34,8 @@ body {
 }
 
 .heart-loader svg {
+  width: 100px;
+  height: 100px;
   fill: #ff6f91;
 }
 
@@ -48,23 +51,20 @@ body {
 
 h1 {
   font-size: 2rem;
-  text-align: center;
   color: #fff;
-  -webkit-background-clip: text;
-  font-family: "Dancing Script", cursive; /* Romantic font */
+  font-family: "Dancing Script", cursive;
   letter-spacing: 2px;
   opacity: 0;
 }
 
 p {
-  font-size: 2.5rem;
-  text-align: center;
-  max-width: 600px;
-  line-height: 1.8;
-  font-family: "Amatic SC", serif;
+  font-size: 1.8rem;
+  max-width: 90%;
+  line-height: 1.5;
   color: #fff;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
   opacity: 0;
+  font-family: "Amatic SC", serif;
 }
 
 button {
@@ -77,7 +77,10 @@ button {
   cursor: pointer;
   transition: transform 0.3s;
   opacity: 0;
-  align-self: center;
+}
+
+button:hover {
+  transform: scale(1.1);
 }
 
 .heart {
@@ -93,13 +96,21 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center; /* Center-align for smaller screens */
 }
 
 .images-container {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
   margin-top: 2rem;
+  flex-wrap: wrap; /* Adjust for smaller screens */
+}
+
+.images-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
 }
 
 .final-image-container {
@@ -113,18 +124,107 @@ button {
   height: 100%;
   background: rgba(0, 0, 0, 0.8);
   z-index: 100;
+  overflow: hidden; /* Prevents any overflow caused by the image */
 }
 
 .final-image {
-  max-width: 80%;
-  max-height: 80%;
+  max-width: 80vw; /* Limits the image to 80% of the viewport width */
+  max-height: 80vh; /* Limits the image to 80% of the viewport height */
   border-radius: 15px;
   opacity: 0;
   transform: scale(0.8);
   transition: transform 0.5s ease, opacity 0.5s ease;
+  object-fit: contain; /* Ensures the image fits properly within its bounds */
 }
 
-.enlarged {
-  transform: scale(3) !important;
-  font-size: 1.5rem !important;
+body.loading #main-content {
+  display: none; /* Keep the main content hidden while loading */
+}
+
+body:not(.loading) #preloader {
+  display: none; /* Hide preloader once loading is done */
+}
+/* Responsive Styles */
+@media (min-width: 576px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
+
+  button {
+    padding: 0.7rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Medium Screens (768px and above) */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  p {
+    font-size: 2rem;
+    max-width: 600px;
+  }
+
+  button {
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+  }
+
+  .images-container {
+    flex-direction: row;
+  }
+}
+
+/* Large Screens (992px and above) */
+@media (min-width: 992px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  p {
+    font-size: 2.2rem;
+  }
+
+  button {
+    padding: 1.2rem 3rem;
+    font-size: 1.5rem;
+  }
+}
+
+/* Extra-Large Screens (1200px and above) */
+@media (min-width: 1200px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  p {
+    font-size: 2.5rem;
+  }
+
+  button {
+    padding: 1.5rem 3.5rem;
+    font-size: 1.8rem;
+  }
+}
+
+/* Extra-Extra-Large Screens (1400px and above) */
+@media (min-width: 1400px) {
+  h1 {
+    font-size: 4rem;
+  }
+
+  p {
+    font-size: 3rem;
+  }
+
+  button {
+    padding: 2rem 4rem;
+    font-size: 2rem;
+  }
 }
